@@ -5,4 +5,5 @@ urlpatterns = [
     path('',views.signin),
     path('home',views.home),
     path('ann',views.ann),
+    path('prof_assignment',views.prof_assignment),
 ]
