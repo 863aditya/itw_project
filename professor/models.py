@@ -12,10 +12,9 @@ class make_announcement(models.Model):
     def __str__(self):
         return self.title
 
-    def __init__(self,a1,a2,a3):
+    def __init__(self,a1,a2):
         self.title=a1
         self.content=a2
-        self.date_posted=a3
     # pass
 
 class exams(models.Model):
