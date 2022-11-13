@@ -8,9 +8,22 @@ method =post -->
 
 
 {% block body %}
+<div style="margin-left: 200px; min-width:1000px">
 <h1 class="text-center my-4">Announcement</h1>
-    <form style="max-width: 1200px; margin-left:15%;">
+    <form method="post" style="font-size: 20px;" action="/p/ann">
         {% csrf_token %}
+        <table>
+            {% for x,y in d1.items %}
+                
+                <tr>
+                    <td>{{x}}</td>
+                    {%  for z in y%}
+                    <td>{{z}}</td>
+                    {% endfor %}
+                </tr>
+                
+            {% endfor %}
+        </table>
         <div class="form-group my-2">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -21,6 +34,7 @@ method =post -->
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

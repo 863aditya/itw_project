@@ -39,13 +39,13 @@ def ann(request):
         # return render(request,'ann.html')
         if request.method=='POST':
             z=request.POST.get('title')
-            y=request.POST.get('content')
-            ay=make_announcement(z,y)
+            y=request.POST.get('description')
+            ay=make_announcement(title= z,content= y)
             ay.save()
         a1=make_announcement.objects.all()
         d1=dict()
         for x in range(len(a1)):
-            d1[x]=[a1[x].title,a1[x].content,a1[x].date_posted]
+            d1[x+1]=[a1[x].title,a1[x].content,a1[x].date_posted]
         return render(request,'prof_announcement.html',{'d1':d1})
 
     else:
