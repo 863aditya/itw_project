@@ -8,20 +8,36 @@ method =post -->
 
 
 {% block body %}
+
+<div>
+    <table class="table">
+
+    </table>
+</div>
 <div style="margin-left: 200px; min-width:1000px">
-<h1 class="text-center my-4">Announcement</h1>
+    <h1 class="text-center my-4">Announcement</h1>
     <form method="post" style="font-size: 20px;" action="/p/ann">
         {% csrf_token %}
-        <table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">Serial No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Date Posted</th>
+                </tr>
+            </thead>
             {% for x,y in d1.items %}
-                
+            <tbody>
                 <tr>
                     <td>{{x}}</td>
-                    {%  for z in y%}
+                    {% for z in y%}
                     <td>{{z}}</td>
                     {% endfor %}
                 </tr>
-                
+            </tbody>
+
             {% endfor %}
         </table>
         <div class="form-group my-2">
@@ -36,9 +52,7 @@ method =post -->
     </form>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
 {% endblock body %}
-
-    
