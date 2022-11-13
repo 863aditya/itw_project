@@ -10,13 +10,14 @@ def signin(request):
         username=request.POST.get('username')
         password=request.POST.get('password')
         user=authenticate(request,username=username,password=password)
+        print(user)
         if user is not None:
             login(request,user)
             return redirect('/p/home')
         else:
             return redirect('/p/')
 
-
+    # return render(request,'')
     return render(request,'signin.html')
 
 def home(request):
@@ -33,6 +34,7 @@ def prof_assignment(request):
 
 
 def ann(request):
+    print(request.user.is_authenticated)
     if request.user.is_authenticated:
         # return render(request,'ann.html')
         if request.method=='POST':
