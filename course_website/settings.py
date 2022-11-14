@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'professor.apps.ProfessorConfig',
     'forum.apps.ForumConfig',
+    'univworks.apps.UnivworksConfig',
 ]
 
 MIDDLEWARE = [
