@@ -3,16 +3,18 @@ from django.shortcuts import render,redirect
 # Create your views here.
 from univworks.models import students
 from univworks.forms import UserForm
-def dummy(f,x):
-    return f.changed_data[x]
+def dummy(request,x):
+    return request.POST.get(x)
 def signup(request):
     if request.method=='POST':
         f1=UserForm(request.POST)
         if f1.is_valid():
-            f1.save()
-            a1=students(roll=dummy(f1,'roll_number'),email=dummy(f1,'email'),first_name=dummy(f1,'first_name'),last_name=dummy(f1,'last_name'),password=dummy(f1,'password1'))
+            a1=request.POST.get('username')
+            print(a1)
+            a1=students(roll=dummy(request,'roll_number'),email=dummy(request,'email'),first_name=dummy(request,'first_name'),last_name=dummy(request,'last_name'),password=dummy(request,'password1'))
             a1.save()
-            
-            redirect('/p/')
+            f1.save()
+
+            return redirect('/s/home')
     form=UserForm
     return render(request,'register.html',{'form':form})

@@ -3,38 +3,15 @@
 
 <div style="padding-top:30px; padding-bottom:40px; background-color: rgb(221, 223, 223);width: 83%;height:100%">
     <div>
+        {% for x,y in d1.items %}
         <div class="my-4"
             style="max-width:1200px;margin-left: 60px; display: block;border: 20px solid white; background-color:white;border-radius: 25px;">
-            <p> <b>a1</b></p>
-            <p> This is TWO!!adsgjag as rghsog s gg sirgjoia dfgksd fg Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Amet, adipisci! Obcaecati reprehenderit non pariatur, hic
-                laudantium
-                dolor corporis quidem aut?</p>
+            
+            <p> <b> {{y.posted}} </b></p>
+            <p>{{y.content}} </p>
         </div>
-        <div class="my-4"
-            style="max-width:1200px;margin-left: 60px; display: block;border: 20px solid white; background-color:white;border-radius: 25px;">
-            <p> <b>a1</b></p>
-            <p> This is TWO!!adsgjag as rghsog s gg sirgjoia dfgksd fg Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Amet, adipisci! Obcaecati reprehenderit non pariatur, hic
-                laudantium
-                dolor corporis quidem aut?</p>
-        </div>
-        <div class="my-4"
-            style="max-width:1200px;margin-left: 60px; display: block;border: 20px solid white; background-color:white;border-radius: 25px;">
-            <p> <b>a1</b></p>
-            <p> This is TWO!!adsgjag as rghsog s gg sirgjoia dfgksd fg Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Amet, adipisci! Obcaecati reprehenderit non pariatur, hic
-                laudantium
-                dolor corporis quidem aut?</p>
-        </div>
-        <div class="my-4"
-            style="max-width:1200px;margin-left: 60px; display: block;border: 20px solid white; background-color:white;border-radius: 25px;">
-            <p> <b>a1</b></p>
-            <p> This is TWO!!adsgjag as rghsog s gg sirgjoia dfgksd fg Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Amet, adipisci! Obcaecati reprehenderit non pariatur, hic
-                laudantium
-                dolor corporis quidem aut?</p>
-        </div>
+        {% endfor %}
+        
     </div>
     <div style="margin-left: 60px; margin-bottom: 400px;width:1200px;">
         <form action=" /f/" method="post">

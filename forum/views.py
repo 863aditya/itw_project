@@ -16,6 +16,6 @@ def pg(request):
         q1=fmsg.objects.all()
         d1=dict()
         for x in range(len(q1)):
-                d1[x+1]=[q1[x].posted_by,q1[x].content]
+                d1[x+1]={'posted': q1[x].posted_by,'content':q1[x].content}
         return render(request,'forum.html',{'d1':d1})
     return redirect('/p/')
