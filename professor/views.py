@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
-from professor.models import make_announcement,assignments
+from professor.models import make_announcement,assignments,exams
 from pathlib import Path
 import uuid
 from hashlib import sha256
@@ -66,7 +66,38 @@ def prof_assignment(request):
         d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
         d1[x+1]=d2
     print(d1)
-    return render(request,'prof_assignments.html',{'d1':d1})
+    return render(request,'prof_assignments.html',{'d1':d1,'title_x':'ASSIGNMENTS'})
+
+
+
+def prof_exams(request):
+    if request.method=='POST':
+        title=request.POST.get('title')
+        description=request.POST.get('description')
+        file_assignment=request.FILES['file']
+        dt=request.POST.get('deadline')
+        r=datetime.datetime.now()
+        print(file_assignment)
+        a1=assignments(title_exam=title,file_exam=file_assignment,deadline_exam=dt,message_exam=description,posted_on=r)
+        # print(request.POST.file)
+        print(request.FILES)
+        handle_uploaded_file(request.FILES['file'],sha256(str(r).encode('utf-8')).hexdigest())
+        a1.save()
+    a1=exams.objects.all()
+    d1=dict()
+    for x in range(len(a1)):
+        d2=dict()
+        d2["title_assignment"]=a1[x].title_exam
+        d2["file_assignment"]=a1[x].file_exam
+        d2["deadline_assignment"]=a1[x].deadline_exam
+        d2["message_assignment"]=a1[x].message_exam
+        y=a1[x].file_assignment
+        y=y.split('.')
+        qw=a1[x].posted_on
+        d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
+        d1[x+1]=d2
+    print(d1)
+    return render(request,'prof_assignments.html',{'d1':d1,'title_x':'EXAMS'})
 
 
 def ann(request):
@@ -82,7 +113,7 @@ def ann(request):
         d1=dict()
         for x in range(len(a1)):
             d1[x+1]=[a1[x].title,a1[x].content,a1[x].date_posted]
-        return render(request,'prof_announcement.html',{'d1':d1})
+        return render(request,'prof_announcement.html',{'d1':d1,'title':'EXAMS'})
 
     else:
         return redirect('/p/')

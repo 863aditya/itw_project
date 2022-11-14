@@ -19,7 +19,7 @@ class exams(models.Model):
     file_exam=models.FileField()
     deadline_exam=models.DateTimeField()
     message_exam=models.TextField()
-    # pass
+    posted_on=models.TextField()
     def __str__(self):
         return self.title_exam
 
