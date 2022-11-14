@@ -27,7 +27,7 @@ class exams(models.Model):
 
 class assignments(models.Model):
     title_assignment=models.TextField()
-    file_assignment=models.FileField()
+    file_assignment=models.TextField()
     deadline_assignment=models.DateTimeField()
     message_assignment=models.TextField()
     # pass
