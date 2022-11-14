@@ -36,7 +36,7 @@ def prof_assignment(request):
     if request.method=='POST':
         title=request.POST.get('title')
         description=request.POST.get('description')
-        file_assignment=request.POST.get('file')
+        file_assignment=request.FILES.get('file')
         dt=request.POST.get('deadline')
         print(file_assignment)
         a1=assignments(title_assignment=title,file_assignment=file_assignment,deadline_assignment=dt,message_assignment=description)
