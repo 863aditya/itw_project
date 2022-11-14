@@ -4,20 +4,13 @@
 <form action="/p/prof_assignment" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table class="table">
-        <thead>
-            <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">Serial No.</th>
-                <th scope="col">Title</th>
-            </tr>
-        </thead>
         {% for x,y in d1.items %}
         <tbody>
             <tr>
                 <td>{{x}}</td>
-                {% comment %} {% for z in y%} {% endcomment %}
-                <td>{{y}}</td>
-                {% comment %} {% endfor %} {% endcomment %}
+                <td>{{y.title_assignment}}</td>
+                
+                <td><a href={{y.link}}</a>  {{y.file_assignment}}</td>
             </tr>
         </tbody>
 

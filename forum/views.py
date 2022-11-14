@@ -9,6 +9,13 @@ from forum.models import fmsg
 def pg(request):
     if request.user.is_authenticated():
         if request.method=='POST':
-            pass
-        pass
-    pass
+            a1=request.user.username
+            a2=request.POST.get('content')
+            a2=fmsg(posted_by=a1,content=a2)
+            a2.save()
+        q1=fmsg.objects.all()
+        d1=dict()
+        for x in range(len(q1)):
+            d1[x+1]=[q1[x].posted_by,q1[x].content]
+        return render(request,'forum.html',{'d1':d1})
+    return redirect('/p/')

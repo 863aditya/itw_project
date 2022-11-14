@@ -47,7 +47,13 @@ def prof_assignment(request):
     a1=assignments.objects.all()
     d1=dict()
     for x in range(len(a1)):
-        d1[x+1]=[a1[x].title_assignment,a1[x].message_assignment,a1[x].file_assignment,a1[x].deadline_assignment]
+        d2=dict()
+        d2["title_assignment"]=a1[x].title_assignment
+        d2["file_assignment"]=a1[x].file_assignment
+        d2["deadline_assignment"]=a1[x].deadline_assignment
+        d2["message_assignment"]=a1[x].message_assignment
+        d2["link"]=f"/static/upload/{a1[x].file_assignment}"
+        d1[x+1]=d2
     return render(request,'prof_assignments.html',{'d1':d1})
 
 
