@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<table>
+    {% for x,y in d1.items %}
+        
+        <tr>
+            <td>{{x}}</td>
+            {%  for z in y%}
+            <td>{{z}}</td>
+            {% endfor %}
+        </tr>
+        
+    {% endfor %}
+</table>
+<form action="/f/" method="post">
+    {% csrf_token %}
+    <div class="form-group mx-2 my-2">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary my-2" type="submit">Submit</button>
+</form>
+<button> <a href="/f/"> prev_page {{cp}} </a> </button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+{% endblock body %}
