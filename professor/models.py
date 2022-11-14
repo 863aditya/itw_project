@@ -30,6 +30,7 @@ class assignments(models.Model):
     file_assignment=models.TextField()
     deadline_assignment=models.DateTimeField()
     message_assignment=models.TextField()
+    posted_on=models.TextField()
     # pass
     def __str__(self):
         return self.title_assignment
