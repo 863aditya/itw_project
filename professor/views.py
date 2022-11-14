@@ -2,12 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from professor.models import make_announcement,assignments
- 
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Create your views here.
 # admin and admin
 
 def handle_uploaded_file(f):  
-    with open('/home/aditya/rt/course_website/static/upload/'+f.name, 'wb+') as destination:  
+    with open(str(BASE_DIR) +'/static/upload/'+f.name, 'wb+') as destination:  
         for chunk in f.chunks():  
             destination.write(chunk)  
 
@@ -52,7 +53,7 @@ def prof_assignment(request):
         d2["file_assignment"]=a1[x].file_assignment
         d2["deadline_assignment"]=a1[x].deadline_assignment
         d2["message_assignment"]=a1[x].message_assignment
-        d2["link"]=f"/course_website/static/upload/{a1[x].file_assignment}"
+        d2["link"]=f"course_website/static/upload/{a1[x].file_assignment}"
         d1[x+1]=d2
     return render(request,'prof_assignments.html',{'d1':d1})
 

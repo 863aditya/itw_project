@@ -1,37 +1,50 @@
 <!-- keep a form below with title as  -->
 {% extends 'base.html' %}
 {% block body %}
-<form action="/p/prof_assignment" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table class="table">
-        {% for x,y in d1.items %}
-        <tbody>
-            <tr>
-                <td>{{x}}</td>
-                <td>{{y.title_assignment}}</td>
-                
-                <td><a href={{y.link}}</a>  {{y.file_assignment}}</td>
-            </tr>
-        </tbody>
+<div class="pt-3 pb-2 mb-3 mx-4" style="margin-left: 140px; width:1200px">
+    <form action="/p/prof_assignment" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:130px">Serial No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Files</th>
+                    <th scope="col">Deadline</th>
 
-        {% endfor %}
-    </table>
-    <div class="form-group mx-2 my-2">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title">
-    </div>
-    <div class="form-group mx-2 my-2">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-    </div>
-    <div class="form-group mx-2 my-2">
-        <label for="file">File input</label>
-        <input type="file" class="form-control-file" id="file" name="file">
-    </div>
-    <div class="form-group mx-2 my-2">
-        <label for="datetime">Enter deadline</label>
-        <input type="datetime-local" id="deadline" name="deadline">
-    </div>
-    <button class="btn btn-primary my-2" type="submit">Submit</button>
-</form> 
+                </tr>
+            </thead>
+            {% for x,y in d1.items %}
+            <tbody>
+                <tr>
+                    <td>{{x}}</td>
+                    <td>{{y.title_assignment}}</td>
+                    <td>{{y.message_assignment}}</td>
+                    <td><a href={{y.link}}  </a> {{y.file_assignment}}</td>
+                    <td>{{y.deadline_assignment}}</td>
+                </tr>
+            </tbody>
+
+            {% endfor %}
+        </table>
+        <div class="form-group mx-2 my-2">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group mx-2 my-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group mx-2 my-2">
+            <label for="file">File input</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <div class="form-group mx-2 my-2">
+            <label for="datetime">Enter deadline</label>
+            <input type="datetime-local" id="deadline" name="deadline">
+        </div>
+        <button class="btn btn-primary my-2" type="submit">Submit</button>
+    </form>
+</div>
 {% endblock body %}
