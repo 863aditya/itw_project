@@ -47,7 +47,7 @@ def prof_assignment(request):
     a1=assignments.objects.all()
     d1=dict()
     for x in range(len(a1)):
-        d1[x+1]=a1[x].title_assignment
+        d1[x+1]=[a1[x].title_assignment,a1[x].message_assignment,a1[x].file_assignment,a1[x].deadline_assignment]
     return render(request,'prof_assignments.html',{'d1':d1})
 
 
