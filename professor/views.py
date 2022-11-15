@@ -7,13 +7,16 @@ import uuid
 from hashlib import sha256
 import datetime,time
 from students.models import students_assignment
-
+from univworks.models import students
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Create your views here.
 # admin and admin
 
+def check_user(request):
+    ax=students.objects.filter(username=request.POST.get('username'))
+    return request.user.is_authenticated and len(ax)==0
 
 def handle_uploaded_file(f,z):  
     q=str(f.name)
@@ -28,9 +31,11 @@ def signin(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
+        ax=students.objects.filter(username=request.POST.get('username'))
+        
         user=authenticate(request,username=username,password=password)
         print(user)
-        if user is not None:
+        if user is not None and len(ax)==0:
             login(request,user)
             return redirect('/p/home')
         else:
@@ -40,10 +45,13 @@ def signin(request):
     return render(request,'signin.html')
 
 def home(request):
+    if check_user(request):
     # if request
-    return render(request,'prof_home.html')
+        return render(request,'prof_home.html')
 
 def prof_assignment(request):
+    if not check_user(request):
+        redirect('/')
     if request.method=='POST':
         title=request.POST.get('title')
         description=request.POST.get('description')
@@ -75,6 +83,8 @@ def prof_assignment(request):
 
 
 def prof_exams(request):
+    if not check_user(request):
+        redirect('/')
     if request.method=='POST':
         title=request.POST.get('title')
         description=request.POST.get('description')
@@ -105,6 +115,8 @@ def prof_exams(request):
 
 
 def ann(request):
+    if not check_user(request):
+        redirect('/')
     print(request.user.is_authenticated)
     if request.user.is_authenticated:
         # return render(request,'ann.html')
@@ -124,12 +136,31 @@ def ann(request):
 
 
 def main_marking(request,*args, **kwargs):
+    if not check_user(request):
+        redirect('/')
+    a1=assignments.objects.all()
+    d1=dict()
+    for x in range(len(a1)):
+        d2=dict()
+        d2["title_assignment"]=a1[x].title_assignment
+        d2["file_assignment"]=a1[x].file_assignment
+        d2["deadline_assignment"]=a1[x].deadline_assignment
+        d2["message_assignment"]=a1[x].message_assignment
+        y=a1[x].file_assignment
+        y=y.split('.')
+        qw=a1[x].posted_on
+        d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
+        d2['check']='/p/marking/'+str(a1[x].id)+'/'
+        d1[x+1]=d2
+    
+    return render(request,'main_marking.html',{'d1':d1})
 
-    pass
 
 
 
 def marking(request,*args, **kwargs):
+    if not check_user(request):
+        redirect('/')
     aid=kwargs.get('pk')
     all_assignments=students_assignment.objects.filter(assignments_id=str(aid))
     d1=dict()
@@ -151,6 +182,9 @@ def marking(request,*args, **kwargs):
         d2['roll_number']=all_assignments[i].roll_number
         d2['submitted_on']=all_assignments[i].submitted_on
         d2['marks_reci']=all_assignments[i].marks_reci
+        print(d2['file_name'])
+        if d2['file_name']==None:
+            continue
         d2['link']='/static/upload/'+d2['file_name']
         d2['marking_link']='/p/marking/'+str(aid)+'/' +str(d2['roll_number'])+'/'
         d1[i+1]=d2
