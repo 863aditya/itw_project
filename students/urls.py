@@ -5,5 +5,5 @@ urlpatterns = [
     path('home/',views.home),
     path('login/',views.login),
     path('assignments/',views.vassignment),
-    path('submit/<int:pk>',views.submit),
+    path('submit/<int:pk>',views.submit,name="submission"),
 ]

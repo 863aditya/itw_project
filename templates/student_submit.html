@@ -1,0 +1,30 @@
+{% extends 'student_base.html' %}
+
+{% block body %}
+<div>
+    <table class="table">
+        {% for x,y in d1.items %}
+        <tbody>
+            <tr>
+                <td>{{x}}</td>
+                <td>{{y.title_assignment}}</td>
+                <td>{{y.message_assignment}}</td>
+                <td><a href={{y.link}}  </a> {{y.file_assignment}}</td>
+                <td>{{y.deadline_assignment}}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <form action= {% url 'submission' id %} method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="form-group mx-2 my-2">
+            <label for="file">File input</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <button class="btn btn-primary my-2" type="submit">Submit</button>
+    </form>
+        {% endfor %}
+    
+</div>
+
+{% endblock body %}

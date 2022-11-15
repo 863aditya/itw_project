@@ -7,6 +7,8 @@ class students(models.Model):
     first_name=models.TextField()
     last_name=models.TextField()
     password=models.TextField()
-
+    username=models.TextField()
     def __str__(self):
         return self.roll
+
+

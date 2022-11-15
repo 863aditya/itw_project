@@ -3,7 +3,7 @@
 {% block body %}
 <div style="margin-left: 140px; width:1200px">
     <h1 class="text-center my-4"> {{title_x}} </h1>
-    <form action="/p/prof_assignment" method="post" enctype="multipart/form-data">
+    {% comment %} <form action="/p/prof_assignment" method="post" enctype="multipart/form-data"> {% endcomment %}
         {% csrf_token %}
         <table class="table">
             <thead>
@@ -13,7 +13,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Files</th>
                     <th scope="col">Deadline</th>
-
+                    <th scope="col">submit_link</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             {% for x,y in d1.items %}
@@ -25,12 +26,17 @@
                     <td><a href={{y.link}}  </a> {{y.file_assignment}}</td>
                     <td>{{y.deadline_assignment}}</td>
                     <td> <a href= {{y.submit}}  </a>SUBMIT </td>
+                    {% if y.check %}
+                        <td> Done </td>
+                    
+                    {% else %} <td> not done </td>
+                    {% endif %}
                 </tr>
             </tbody>
 
             {% endfor %}
         </table>
-        <div class="form-group mx-2 my-2">
+        {% comment %} <div class="form-group mx-2 my-2">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title">
         </div>
@@ -47,6 +53,6 @@
             <input type="datetime-local" id="deadline" name="deadline">
         </div>
         <button class="btn btn-primary my-2" type="submit">Submit</button>
-    </form>
+    </form> {% endcomment %}
 </div>
 {% endblock body %}

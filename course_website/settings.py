@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'professor.apps.ProfessorConfig',
     'forum.apps.ForumConfig',
     'univworks.apps.UnivworksConfig',
+    'students.apps.StudentsConfig',
 ]
 
 MIDDLEWARE = [
