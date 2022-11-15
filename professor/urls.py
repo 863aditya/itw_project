@@ -7,4 +7,6 @@ urlpatterns = [
     path('ann',views.ann),
     path('prof_assignment',views.prof_assignment),
     path('prof_exams',views.prof_exams),
+    path('marking/<int:pk>/',views.marking),
+    path('marking/<int:pk>/<str:roll>/',views.marking),
 ]

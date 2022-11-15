@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in</title>
+</head>
+
+<body <p
+    style="background-image: url('/static/back.avif');background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
+    </p>>
+
+    <div
+        style="border-style: solid;margin-left: 600px;margin-right:600px;margin-top:250px; padding-left: 35px; padding-top: 10px; padding-bottom:40px; background-color: rgb(255, 255, 255); justify-content: center;">
+        <form method="post" action="/s/login/">
+            {% csrf_token %}
+            <h1 style="font-size:50px;"><b>Please sign in</b></h1>
+            <div style="font-size: 25px;">
+                <label for="username">Username</label>
+                <br>
+                <input type=" text" id="username" name="username" placeholder="Username"
+                    style="font-size: 20px; width: 270px;">
+            </div>
+            <div style="margin-top: 15px;font-size: 25px;">
+                <label for="password">Password</label>
+                <br>
+                <input type="password" id="password" name="password" placeholder="Password"
+                    style="font-size: 20px; width: 270px;">
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" style="margin-top: 30px;font-size: 20px;" type="submit">Sign
+                in</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

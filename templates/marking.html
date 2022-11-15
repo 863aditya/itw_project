@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div>
+    {% for x,y in d1.items  %}
+    <div>
+       <table>
+        <tr> 
+            <td>{{x}} </td>
+            <td> <a href= {{y.link}} </a> {{y.file_submitted}} </td>
+            <td> {{y.roll_number}} </td>
+            <td> {{y.submitted_on}} </td>
+            <td> {{y.marks_reci}} </td>
+            <td>  
+                <form action= {{y.marking_link}} method="post"  >
+                    {% csrf_token %}
+                    <div class="form-group my-2">
+                        <label for="marks">Description</label>
+                        <textarea class="form-control" id="marks" name="marks" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </td>
+        </tr>
+       </table>
+        
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

@@ -26,7 +26,7 @@ def home(request):
         return render(request,'student_base.html',{'name':request.user.username})
     return redirect('/s/login')
 
-def login(request):
+def login_x(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -34,10 +34,10 @@ def login(request):
         print(user)
         if user is not None:
             login(request,user)
-            return redirect('/s/home')
+            return redirect('/s/home/')
         else:
-            return redirect('/s/login')
-    return render(request,'signin.html')
+            return redirect('/s/login/')
+    return render(request,'student_sign.html')
 
 def vassignment(request):
     a1=assignments.objects.all()

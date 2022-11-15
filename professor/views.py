@@ -6,10 +6,14 @@ from pathlib import Path
 import uuid
 from hashlib import sha256
 import datetime,time
+from students.models import students_assignment
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Create your views here.
 # admin and admin
+
 
 def handle_uploaded_file(f,z):  
     q=str(f.name)
@@ -117,3 +121,37 @@ def ann(request):
 
     else:
         return redirect('/p/')
+
+
+def main_marking(request,*args, **kwargs):
+
+    pass
+
+
+
+def marking(request,*args, **kwargs):
+    aid=kwargs.get('pk')
+    all_assignments=students_assignment.objects.filter(assignments_id=str(aid))
+    d1=dict()
+
+    if request.method=='POST':
+        roll_x=kwargs.get('roll')
+        roll_x=str(roll_x)
+        marks=request.POST.get('marks')
+        ar=students_assignment.objects.filter(assignments_id=aid,roll_number=roll_x)[0]
+        ar.marks_reci=marks
+        ar.save()
+        return redirect('/p/marking/'+str(aid)+'/')
+
+
+    for i in range(len(all_assignments)):
+        d2=dict()
+        d2['file_submitted']=all_assignments[i].file_submitted
+        d2['file_name']=all_assignments[i].file_name
+        d2['roll_number']=all_assignments[i].roll_number
+        d2['submitted_on']=all_assignments[i].submitted_on
+        d2['marks_reci']=all_assignments[i].marks_reci
+        d2['link']='/static/upload/'+d2['file_name']
+        d2['marking_link']='/p/marking/'+str(aid)+'/' +str(d2['roll_number'])+'/'
+        d1[i+1]=d2
+    return render(request,'marking.html',{'d1':d1})
