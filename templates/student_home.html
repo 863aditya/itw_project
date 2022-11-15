@@ -1,114 +1,179 @@
-<!doctype html>
-<html lang="en">
+{% extends 'student_base.html' %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <title>Test</title>
-
-</head>
-
-<body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <h1><a class="nav-link" href="/p/home">Welcome Yash Babel</a></h1>
-            <button type="button" class="btn btn-dark" style="margin-left:70%;">Sign out</button>
+{% block body %}
+<div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mx-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="font-weight-bold h2">CSO211</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
         </div>
-    </nav>
+        {% comment %}
+    </div> {% endcomment %}
+</div>
+
+<div style="margin-left: 140px; width:1200px"">
+
+    <font class=" header"><b>Overview</b></font><br>
+    <font class="content">This course is a study of the evolution of
+        computer architecture and the factors influencing the design of
+        hardware and software elements of computer systems. Topics may
+        include: instruction set design; processor micro-architecture
+        and pipelining; cache and virtual memory organizations;
+        protection and sharing; I/O and interrupts; in-order and
+        out-of-order superscalar architectures; VLIW machines; vector
+        supercomputers; multithreaded architectures; symmetric
+        multiprocessors; memory models and synchronization; embedded
+        systems; and parallel computers. </font><br>
+
+    <br>
+    <font class="header"><b>Course Information</b></font><br>
+    <br>
+
+    <font class="content"><i>Warning: All information on this
+            website is subject to change. Though we send messages to the
+            class in case of a change, please do check the course web site
+            in case of doubt.</i></font><br>
+    <br>
+
+    <font class="content"><b>Lectures:</b> Lectures will be from 1:00PM to
+        2:30 PM every Monday and Wednesday in room ><b>32-141</b>
+        <!--For those of you who cannot attend the live lectures, recordings will 
+    be made available on Piazza in a best-effort basis.-->
+    </font><br>
+    <br>
+
+    <font class="content"><b>Tutorials:</b> A 1-hour tutorial
+        session will be held each week on Friday at 1 PM in room <b>32-141</b>.
+        The main focus of the tutorial session will be to work through the
+        problem set questions and clarify lectures as necessary. Quizzes
+        will also be given in tutorials, so it is important to avoid any
+        recurring conflict with the tutorial time. Additional tutorials
+        will be held in an evening before each quiz.
+        <!--[hrlee] Need to decide whether to offer recordings.
+    Tutorial sessions will be recorded and made available on Piazza
+    in a best-effort basis-->
+    </font><br> <br>
+
+    <font class="content"><b>Office Hours:</b> See the staff page
+        for details.</font><br>
+    <br>
+
+    <font class="content"><b>Problem Sets:</b> The subject is
+        divided in modules, each covering a set of related
+        topics. There is a set of online problems related to each
+        module. The best way to prepare for the quizzes is to work on these
+        problems. Although problem solutions do not have to be handed in
+        (and consequently, are not graded), it is essential that
+        students become thoroughly familiar with the material. Many quiz
+        questions will assume knowledge of detailed machine descriptions
+        provided in the problem sets. <br> <br>
+
+        Students are encouraged to work in groups to discuss the problem
+        sets, then to individually write out complete solutions prior to
+        examining the online solutions. It is our goal to make each
+        problem interesting and illustrative of some aspect of computer
+        design. However, every problem is not equally important to
+        prepare for the quiz; we will indicate which problems are most
+        important for each quiz. <br> <br>
+
+        Students are encouraged to bring their solutions to the
+        tutorials for discussion, especially if the online solutions are
+        missing or if the student has a different solution then the one
+        posed on the website. <br> <br>
+
+        <font class="content"><b>Laboratory Exercises:</b> There will be <i>four</i>
+            Laboratory Exercises that will explore the concepts taught in lecture using
+            industrial-strength tools. Two to three weeks will be allotted for the completion
+            of each lab.
+            <!--[hrlee] Not true with 3 quizzes
+    Labs are generally due the week before the related quiz.-->
+            To allow proper time
+            to study for the following quiz, extensions will only be granted in <i>extreme</i> cases.<br> <br>
+            Laboratory exercises are to be completed individually,
+            but comparing results and discussing course
+            concepts covered in the laboratories is encouraged. <br><br>
+
+            <font class="content"><b>Quizzes:</b> In the first lecture, a
+                prerequisite self-evaluation quiz will be handed out. This must
+                be handed back in the tutorial session of the same week. This quiz should
+                be used by you to assess your preparation for the course. <i>You
+                    must work individually on this quiz and turn in your own
+                    solutions.</i> <br> <br>
+
+                There will be three one-and-half-hour quizzes, generally
+                scheduled during the tutorial time on Fridays. The quizzes will
+                focus on one section of the course, but can draw upon material
+                from any part of the course to date, including problem sets, laboratory exercises,
+                and assigned readings. All quizzes are <i>closed book.</i></font>
+            <br> <br>
+
+            <font class="content"><b>Grades:</b> 75% of the grade will be based on the
+                three quizzes, equally weighted.
+                The remaining 25% of the grade will be based on four
+                laboratory exercises.
+                <!--The last two labs have twice the weight of the first two.-->
+                <!-- [victory] Redundant and outdated, it's enough that the self-assessment is mentioned above in the paragraph on quizes, and on the syllabus
+    In addition, each student must
+    turn in the self-evaluation quiz, due in the third
+    lecture. 
+    -->
+            </font><br> <br>
+
+            <font class="content"><b>Collaboration and Academic Honesty
+                    Policy:</b> Students must not discuss a quiz's contents with
+                other students who have not yet taken the quiz. If prior to
+                taking it, you are inadvertently exposed to material in a quiz -
+                by whatever means - you must immediately inform the instructor
+                or a TA. You must turn in your own solutions to the
+                self-evaluation quiz. Any violation of this policy will be
+                treated severely. <br> <br>
+
+                Collaboration among students to understand the course material
+                and problem sets is strongly encouraged. Laboratory exercises should be
+                completed individually.<br> <br>
 
 
-    <div class="text-center " style="display:flex; flex-wrap:wrap; gap:5px; margin-left:10px;">
+                <font class="content"><b>Course Reading Material:</b>
+                    <i>Computer Architecture: A Quantitative Approach: 5th
+                        Edition</i> by J. L. Hennessy and D. A. Patterson is the
+                    main textbook used in this course. This book is available
+                    at for around $90 and also available
+                    at
+                    We also give the equivalent readings
+                    for the 2nd, 3rd, 4th, and 6th editions of this book to allow you to use a
+                    secondhand copy. In previous years, some students found that the
+                    lecture notes were sufficient to learn the material and that the
+                    textbook was unnecessary, but we nevertheless recommend the book
+                    as a good reference guide. You may also want to refer to
+                    Computer Organization &amp; Design: The Hardware/Software
+                    Interface by D. A. Patterson and J. L. Hennessy to review the
+                    basic material. Supplemental readings from selected papers may
+                    also be assigned throughout the semester. There may be a nominal
+                    photocopying charge,always payable to MIT, for the supplemental
+                    reading materials.
+                    <br> <br>
 
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/math.jpeg" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">MA202</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/img3.avif" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/physics.jpeg" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">PHY102</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/chemistry.jpeg" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">CHE101</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/biology.jpeg" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">BL101</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/img2.avif" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/img1.avif" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/img2.avif" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-        <div class="card" style="width: 300px; margin:30px">
-            <img src="/static/img3.avif" class="card-img-top" alt="..." style="height:220px">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!-- Optional JavaScript; choose one of the two! -->
+                    <i>Principles and Practices of Interconnection Networks</i> by William J. Dally &amp; Brian Towles.
+                    Morgan Kaufmann Publishers Inc. On reserve at the library, for students to checkout.
+                    <i>On-Chip Networks</i> by Natalie E. <span class="SpellE">Jerger</span> &amp;
+                    Li-<span class="SpellE">Shiuan</span> <span class="SpellE">Peh</span>. Morgan
+                    &amp; Claypool Publishers. Available
+                </font>
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
--->
-</body>
+            </font>
+            <p></p>
 
-</html>
+            <p><i>
+                    <font class="content"><br>
+                        <br>
+                        <br>
+                        <br>
+                    </font>
+                </i></p>
+        </font>
+    </font>
+</div>
+</div>
+
+{% endblock body %}

@@ -23,7 +23,7 @@ def handle_uploaded_file(f,z):
 
 def home(request):
     if request.user.is_authenticated:
-        return render(request,'student_base.html',{'name':request.user.username})
+        return render(request,'student_home.html',{'name':request.user.username})
     return redirect('/s/login')
 
 def login_x(request):
@@ -61,8 +61,8 @@ def vassignment(request):
         d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
         d2["submit"]='/s/submit/'+str(a1[x].id)
         # d2["check"]=(ax[0].marks_reci==None)? "not marked":ax[0].marks_reci
-        if ax[0].marks_reci==None:
-            d2["check"]="not marked"
+        if ax[0].submitted_on==None:
+            d2['check']="not submitted"
         else:
             d2["check"]=ax[0].marks_reci
         print(ax[0].marks_reci)
@@ -73,7 +73,9 @@ def vassignment(request):
 def submit(request,**kwargs):
     print(kwargs.get('pk'))
     assignment_id=kwargs.get('pk')
+    assignment_id=str(assignment_id)
     roll_x=students.objects.filter(username=request.user.username)[0].roll
+    roll_x=str(roll_x)
     obj=assignments.objects.filter(id=assignment_id)[0]
     d2=dict()
     d2["title_assignment"]=obj.title_assignment
@@ -81,6 +83,7 @@ def submit(request,**kwargs):
     d2["deadline_assignment"]=obj.deadline_assignment
     d2["message_assignment"]=obj.message_assignment
     d2["submit"]=str(obj.id)
+    d2['fin']='/s/submit/'+str(assignment_id)
     y=obj.file_assignment
     y=y.split('.')
     qw=obj.posted_on
@@ -88,16 +91,19 @@ def submit(request,**kwargs):
     d1={1:d2}
     # at=students_assignment.objects.filter(assignments_id=assignment_id,roll_number=roll_x)[0]
     if request.method=='POST':
-        ax=students_assignment.objects.filter(assignments_id=assignment_id,roll_number=roll_x)
-        ay=ax[0]
+        ax=students_assignment.objects.get(assignments_id=assignment_id,roll_number=roll_x)
+        print("posted")
+        # ax=ax[0]
+        print(ax.marks_reci)
         file_taken=request.FILES['file']
-        ay.marks_reci="no corrected"
-        ay.submitted_on=datetime.datetime.now()
-        ay.file_submitted=file_taken
+        ax.marks_reci="not corrected"
+        print(ax.marks_reci)
+        ax.submitted_on=datetime.datetime.now()
+        ax.file_submitted=file_taken
         df=str(roll_x)+str(assignment_id)
-        ay.file_name=sha256(str(df).encode('utf-8')).hexdigest()
-        ay.save()
-        handle_uploaded_file(file_taken,ay.file_name)
+        ax.file_name=sha256(str(df).encode('utf-8')).hexdigest()
+        ax.save()
+        handle_uploaded_file(file_taken,ax.file_name)
         return redirect('/s/assignments/')
     
     return render(request,'student_submit.html',{'d1':d1,'id':str(obj.id),'name':request.user.username})
