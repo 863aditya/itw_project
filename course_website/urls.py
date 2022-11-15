@@ -21,5 +21,6 @@ urlpatterns = [
     path('p/',include('professor.urls')),
     path('f/',include('forum.urls')),
     path('u/',include('univworks.urls')),
-    path('s/',include('students.urls'))
+    path('s/',include('students.urls')),
+    path('',include('univworks.urls'))
 ]

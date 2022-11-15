@@ -37,7 +37,7 @@ def login_x(request):
             return redirect('/s/home/')
         else:
             return redirect('/s/login/')
-    return render(request,'student_sign.html')
+    return render(request,'student_sign.html',{'name':request.user.username})
 
 def vassignment(request):
     a1=assignments.objects.all()
@@ -60,10 +60,14 @@ def vassignment(request):
         qw=a1[x].posted_on
         d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
         d2["submit"]='/s/submit/'+str(a1[x].id)
-        d2["check"]=ax[0].marks_reci=="no corrected"
+        # d2["check"]=(ax[0].marks_reci==None)? "not marked":ax[0].marks_reci
+        if ax[0].marks_reci==None:
+            d2["check"]="not marked"
+        else:
+            d2["check"]=ax[0].marks_reci
         print(ax[0].marks_reci)
         d1[x+1]=d2
-    return render(request,'student_assignment.html',{'d1':d1,'title_x':'Assignments'})
+    return render(request,'student_assignment.html',{'d1':d1,'title_x':'Assignments','name':request.user.username})
     pass
 
 def submit(request,**kwargs):
@@ -82,6 +86,7 @@ def submit(request,**kwargs):
     qw=obj.posted_on
     d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[1]}"
     d1={1:d2}
+    # at=students_assignment.objects.filter(assignments_id=assignment_id,roll_number=roll_x)[0]
     if request.method=='POST':
         ax=students_assignment.objects.filter(assignments_id=assignment_id,roll_number=roll_x)
         ay=ax[0]
@@ -95,6 +100,6 @@ def submit(request,**kwargs):
         handle_uploaded_file(file_taken,ay.file_name)
         return redirect('/s/assignments/')
     
-    return render(request,'student_submit.html',{'d1':d1,'id':str(obj.id)})
+    return render(request,'student_submit.html',{'d1':d1,'id':str(obj.id),'name':request.user.username})
     
     # pass

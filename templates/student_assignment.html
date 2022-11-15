@@ -26,11 +26,12 @@
                     <td><a href={{y.link}}  </a> {{y.file_assignment}}</td>
                     <td>{{y.deadline_assignment}}</td>
                     <td> <a href= {{y.submit}}  </a>SUBMIT </td>
-                    {% if y.check %}
+                    {% comment %} {% if y.check %}
                         <td> Done </td>
                     
                     {% else %} <td> not done </td>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
+                    <td> {{y.check}}</td>
                 </tr>
             </tbody>
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-
+from django.contrib.auth import logout, authenticate, login
 # Create your views here.
 from univworks.models import students
 from univworks.forms import UserForm
@@ -18,3 +18,10 @@ def signup(request):
             return redirect('/s/home')
     form=UserForm
     return render(request,'register.html',{'form':form})
+
+def signout(request):
+    logout(request)
+    return redirect('/')
+
+def home(request):
+    return render(request,'univ_home.html')

@@ -1,0 +1,28 @@
+{% extends 'student_base.html' %}
+{% block body %}
+
+<div style="padding-top:30px; padding-bottom:40px; background-color: rgb(221, 223, 223);width: 83%;height:100%">
+    <div>
+        {% for x,y in d1.items %}
+        <div class="my-4"
+            style="max-width:1200px;margin-left: 60px; display: block;border: 20px solid white; background-color:white;border-radius: 25px;">
+            
+            <p> <b> {{y.posted}} </b></p>
+            <p>{{y.content}} </p>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div style="margin-left: 60px; margin-bottom: 400px;width:1200px;">
+        <form action=" /f/" method="post">
+            {% csrf_token %}
+            <div class="form-group mx-2 my-2">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4"
+                    style="border-radius: 25px;"></textarea>
+            </div>
+            <button class="btn btn-primary my-2 mx-2" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

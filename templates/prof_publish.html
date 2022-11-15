@@ -1,0 +1,54 @@
+<!-- keep a form below with title as  -->
+{% extends 'base.html' %}
+{% block body %}
+<div style="margin-left: 140px; width:1200px">
+    <h1 class="text-center my-4">Published</h1>
+    <form action="/p/prof_assignment" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:130px">Serial No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Files</th>
+
+                </tr>
+            </thead>
+            <!-- {% for x,y in d1.items %}
+            <tbody>
+                <tr>
+                    <td>{{x}}</td>
+                    <td>{{y.title_assignment}}</td>
+                    <td>{{y.message_assignment}}</td>
+                    <td><a href={{y.link}} </a> {{y.file_assignment}}</td>
+                    <td>{{y.deadline_assignment}}</td>
+                </tr>
+            </tbody>
+            {% endfor %} -->
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Test</td>
+                    <td>This is test</td>
+                    <td>file</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group mx-2 my-2">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group mx-2 my-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group mx-2 my-2">
+            <label for="file">File input</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <button class="btn btn-primary my-2" type="submit">Publish</button>
+    </form>
+</div>
+{% endblock body %}
