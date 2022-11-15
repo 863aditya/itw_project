@@ -1,0 +1,43 @@
+<!-- variable name as:
+title text field
+content as text field
+csrf token compulsory
+method =post -->
+
+{% extends 'student_base.html' %}
+
+
+{% block body %}
+
+<div>
+    <table class="table">
+
+    </table>
+</div>
+<div style="margin-left: 140px; width:1200px">
+    <h1 class="text-center my-4">Announcement</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">Serial No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Date Posted</th>
+                </tr>
+            </thead>
+            {% for x,y in d1.items %}
+            <tbody>
+                <tr>
+                    <td>{{x}}</td>
+                    {% for z in y%}
+                    <td>{{z}}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock body %}

@@ -109,3 +109,21 @@ def submit(request,**kwargs):
     return render(request,'student_submit.html',{'d1':d1,'id':str(obj.id),'name':request.user.username})
     
     # pass
+
+def ann(request):
+    if request.user.is_authenticated:
+        # return render(request,'ann.html')
+        if request.method=='POST':
+            z=request.POST.get('title')
+            y=request.POST.get('description')
+            ay=make_announcement(title= z,content= y)
+            ay.save()
+        a1=make_announcement.objects.all()
+        d1=dict()
+        for x in range(len(a1)):
+            d1[x+1]=[a1[x].title,a1[x].content,a1[x].date_posted]
+        return render(request,'stu_ann.html',{'d1':d1,'title':'EXAMS','name':request.user.username})
+
+    else:
+        return redirect('/s/')
+    # pass
