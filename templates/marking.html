@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<div>
+<div style="margin-left: 140px; width:1200px">
+    <h1 class="text-center my-4">Marks</h1>
     {% for x,y in d1.items  %}
-    <div>
-       <table>
+    {% comment %} <div> {% endcomment %}
+       <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="width:130px">Serial No.</th>
+                <th scope="col">File</th>
+                <th scope="col">Roll number</th>
+                <th scope="col">Datetime</th>
+                <th scope="col">marks</th>
+                <th scope="col">Updation</th>
+
+            </tr>
+        </thead>
         <tr> 
             <td>{{x}} </td>
             <td> <a href= {{y.link}} </a> {{y.file_submitted}} </td>
@@ -14,11 +26,10 @@
             <td>  
                 <form action= {{y.marking_link}} method="post"  >
                     {% csrf_token %}
-                    <div class="form-group my-2">
-                        <label for="marks">Description</label>
-                        <textarea class="form-control" id="marks" name="marks" rows="3"></textarea>
-                    </div>
+                    <div class="form-group my-2" style="display:flex">
+                        <input type="text" class="form-control" id="title" name="title" style="width:100px; margin-right:10px;">
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
             </td>
         </tr>
@@ -26,5 +37,5 @@
         
     </div>
     {% endfor %}
-</div>
+{% comment %} </div> {% endcomment %}
 {% endblock body %}
