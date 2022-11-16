@@ -168,6 +168,7 @@ def marking(request,*args, **kwargs):
     if request.method=='POST':
         roll_x=kwargs.get('roll')
         roll_x=str(roll_x)
+        print('ok')
         marks=request.POST.get('marks')
         ar=students_assignment.objects.filter(assignments_id=aid,roll_number=roll_x)[0]
         ar.marks_reci=marks
@@ -185,7 +186,11 @@ def marking(request,*args, **kwargs):
         print(d2['file_name'])
         if d2['file_name']==None:
             continue
-        d2['link']='/static/upload/'+d2['file_name']
+        y=all_assignments[i].file_name
+        y=y.split('.')
+        qw=all_assignments[i].submitted_on
+        d2["link"]=f"/static/upload/{sha256(str(qw).encode('utf-8')).hexdigest()}.{y[len(y)-1]}"
+        print(y[len(y)-1])
         d2['marking_link']='/p/marking/'+str(aid)+'/' +str(d2['roll_number'])+'/'
         d1[i+1]=d2
     return render(request,'marking.html',{'d1':d1})
